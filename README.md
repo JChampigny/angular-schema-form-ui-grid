@@ -33,15 +33,17 @@ Schema | Default Form type
 The columns have to be defined at declaration so that we can validate the types and display the right titles.
 Here are the different attributes a column can have.
 
-Title | Type | Description | Is Optional
-name | string | The name of the column in the Excel File |
-displayName | string | The title the column should display in the preview grid |
-type | enum | The type of the column in the Excel File |
-validation | object | The validations to run on the column | Optional
-conversionToObject | callback | A callback to extract and transform the value from the Excel file to the JavaScript object |
-conversionFromObject | callback | A callback to extract and transform the value from the JavaScript object to the preview |
-width | string | The column width | Optional
-defaultValue | Of type "type" | The default value for the field | Optional
+| Title | Type | Description | Is Optional |
+| --- | --- | --- | --- |
+| name | string | The name of the column in the Excel File |  | 
+| displayName | string | The title the column should display in the preview grid |  |
+| type | enum | The type of the column in the Excel File |  |
+| validation | object | The validations to run on the column | Optional |
+| conversionToObject | callback | A callback to extract and transform the value from the Excel file to the JavaScript object |  | 
+| conversionFromObject | callback | A callback to extract and transform the value from the JavaScript object to the preview |  | 
+| width | string | The column width | Optional |
+| defaultValue | Of type "type" | The default value for the field | Optional |
+
 
 ## Example
 ### Helper functions
