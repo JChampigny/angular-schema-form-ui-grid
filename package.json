@@ -1,0 +1,39 @@
+{
+  "name": "angular-schema-form-ui-grid",
+  "version": "0.1.0",
+  "description": "This plugin is adapting the UI Grid into a Excel File loader/preview for angular schema form",
+  "main": "dist\\angular-schema-form-ui-grid.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^1.8.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jscs": "^1.1.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-umd": "",
+    "gulp-uglify": "^1.5.3",
+    "gulp-webserver": "^0.9.1",
+    "streamqueue": "0.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JChampigny/angular-schema-form-ui-grid.git"
+  },
+  "keywords": [
+    "angular",
+    "schema",
+    "form",
+    "ui",
+    "grid",
+    "excel"
+  ],
+  "author": "Jerome Champigny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JChampigny/angular-schema-form-ui-grid/issues"
+  },
+  "homepage": "https://github.com/JChampigny/angular-schema-form-ui-grid#readme"
+}

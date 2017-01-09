@@ -1,0 +1,90 @@
+<div gm-ui-grid="form" class="form-group schema-form-{{form.type}} {{form.htmlClass}}"
+     ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false }">
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !form.title}"
+                   ng-if="form.title !== form.key[0]" for="{{form.key.slice(-1)[0]}}">
+                {{form.title}}
+                <i ng-hide="form.readonly" ng-hide="!vm.gridOptions.data.length" class="fa fa-undo clickable"
+                   aria-hidden="true" ng-click="vm.reset()"></i>
+            </label>
+            <span ng-if="form.fieldAddonLeft" class="input-group-addon" ng-bind-html="form.fieldAddonLeft"></span>
+        </div>
+        <div class="col-md-10">
+            <div class="col-md-7 row">
+            </div>
+            <div class="tooltip-mark col-sm-1">
+                           <span ng-if="form.tooltip.content != null && form.tooltip.content != ''"
+                                 class="glyphicon glyphicon-question-sign clickable"
+                                 ng-attr-tooltip-trigger="outsideClick"
+                                 ng-attr-tooltip-placement="{{form.tooltip.position}}"
+                                 ng-attr-uib-tooltip="{{form.tooltip.content}}"></span>
+            </div>
+            <div class="help-block col-sm-3" style="height: 43px;" sf-message="form.description"></div>
+            <div class="col-sm-1">
+                           <span ng-if="form.feedback !== false" class="form-control-feedback"
+                                 ng-class="evalInScope(form.feedback) || {'glyphicon': true, 'glyphicon-ok': hasSuccess(), 'glyphicon-remove': hasError() }"
+                                 aria-hidden="true"></span>
+                <span ng-if="hasError() || hasSuccess()" id="{{form.key.slice(-1)[0] + 'Status'}}" class="sr-only">
+                                   {{ hasSuccess() ? '(success)' : '(error)' }}
+                               </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 file-upload">
+            <div id="grid1" ui-grid="vm.gridOptions" class="grid" ng-if="vm.gridOptions.data.length">
+            </div>
+            <div grid-data ng-show="!vm.gridOptions.data.length" ng-model="$$value$$" schema-validate="form"
+                 sf-changed="form"
+                 name="{{form.key.slice(-1)[0]}}" class="well well-sm bg-white mb">
+                <div ng-include="'upload.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 row">
+            <div class="row well well-sm bg-white mb">
+                <div class="col-md-4">
+                    <a class="btn btn-block"
+                       href="https://s3.amazonaws.com/diap.prod.us-east-1.datavault-portal-resource/Custom%20Feed%20Template.xlsx"
+                       target="_blank">Download Template</a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-block" ng-click="showTemplateInstructions()">View Template Instructions</a>
+                </div>
+                <div class="col-md-4">
+                    <button ng-disabled="form.readonly" class="btn btn-block" type="button" ng-click="vm.reset()">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="upload.html">
+    <div fileread ngf-drop="selectFile(gridFile)" ngf-select="selectFile(gridFile)" opts="vm.gridOptions" type="file"
+         ngf-multiple="false" name="gridFile"
+         ng-attr-ngf-pattern="{{ form.schema.pattern && form.schema.pattern.mimeType ? form.schema.pattern.mimeType : undefined }}"
+         ng-model="gridFile"
+         ng-attr-ngf-max-size="{{ form.schema.maxSize && form.schema.maxSize.maximum ? form.schema.maxSize.maximum : undefined }}"
+         ng-required="form.required"
+         accept="{{ form.schema.pattern && form.schema.pattern.mimeType }}" ng-model-options="form.ngModelOptions"
+         ngf-drag-over-class="dragover"
+         class="drop-box dragAndDropDescription" ng-protection-key="form.protectionKey">
+        <p class="text-center">Drag file or click to upload</p>
+    </div>
+    <div ngf-no-file-drop>{{ 'modules.upload.dndNotSupported' }}</div>
+    <button fileread ngf-select="selectFile(gridFile)" type="file" ngf-multiple="false" opts="vm.gridOptions"
+            name="gridFile"
+            ng-attr-ngf-pattern="{{ form.schema.pattern && form.schema.pattern.mimeType ? form.schema.pattern.mimeType : undefined }}"
+            ng-model="gridFile"
+            ng-attr-ngf-max-size="{{ form.schema.maxSize && form.schema.maxSize.maximum ? form.schema.maxSize.maximum : undefined }}"
+            ng-required="form.required" accept="{{ form.schema.pattern && form.schema.pattern.mimeType}}"
+            ng-model-options="form.ngModelOptions"
+            id="fileInputButton" class="btn btn-primary btn-block {{ form.htmlClass }} mt-lg mb"
+            ng-protection-key="form.protectionKey">
+        <fa fw="fw" name="upload" class="mr-sm"></fa>
+        Add
+    </button>
+</script>
